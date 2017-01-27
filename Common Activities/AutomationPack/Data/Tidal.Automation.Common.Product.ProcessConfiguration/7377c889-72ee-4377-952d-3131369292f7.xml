@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<ProcessConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:space="preserve">
+  <Id>7377c889-72ee-4377-952d-3131369292f7</Id>
+  <DisplayName>Ping</DisplayName>
+  <VersionNumber>-1</VersionNumber>
+  <CreatedTime>2013-05-12T21:32:17.3681843Z</CreatedTime>
+  <ModifiedTime>2013-05-17T20:38:55.9065798Z</ModifiedTime>
+  <Version>3.0.0.903</Version>
+  <TargetLoadBalancer xsi:type="RequireOverrideLoadBalancer" />
+  <AuditStarts>true</AuditStarts>
+  <AuditSuccesses>true</AuditSuccesses>
+  <WorkflowId>bc7566cb-12bd-4714-8ad0-56f7653c1e3c</WorkflowId>
+  <CategoryIds />
+  <TriggerOwner>3735b75d-4080-4632-a3b4-185384d778ce</TriggerOwner>
+  <Triggers>
+    <TriggerDefinition>
+      <Event xsi:type="AdHocEventDefinition">
+        <Id>313af101-7913-4715-8bfa-b865e5ec7334</Id>
+        <DisplayName>Started by User</DisplayName>
+        <Imported>true</Imported>
+        <Identities />
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>709e3ea9-a0c9-447b-9325-4db5ba37f07d</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>6c610b28-093d-434f-b225-45196d8a34d9</TriggerId>
+    </TriggerDefinition>
+    <TriggerDefinition>
+      <Event xsi:type="StartProcessEventDefinition">
+        <Id>1f31dede-2588-4704-bfe4-008c418c2ffa</Id>
+        <DisplayName>Started by Parent Process</DisplayName>
+        <Imported>true</Imported>
+        <ProcessIds />
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>8dd48781-f6ef-4ef2-a777-dfa099b9cce5</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>155373a2-37ab-410f-8931-92f6e21de442</TriggerId>
+    </TriggerDefinition>
+    <TriggerDefinition>
+      <Event xsi:type="NorthboundEventDefinition">
+        <Id>b16c5c00-0be2-bd1a-abbc-0c01fa95f89d</Id>
+        <DisplayName>Started by Web Service</DisplayName>
+        <Imported>true</Imported>
+        <NorthboundName>Ping</NorthboundName>
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>2a780a18-fe1f-6d00-2023-21d66b96df81</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>46c6d3fe-02b6-88c2-eb4e-c6e45e45f6b0</TriggerId>
+    </TriggerDefinition>
+  </Triggers>
+  <VariableDefinitions>
+    <VariableConfiguration xsi:type="StringVariableConfiguration" xml:space="preserve">
+      <Id>958246a8-54ed-490c-90cf-00b6160df576</Id>
+      <DisplayName>Destination</DisplayName>
+      <Scope>
+        <Family>ProcessInstanceIn</Family>
+        <ControllingItemId>7377c889-72ee-4377-952d-3131369292f7</ControllingItemId>
+      </Scope>
+      <ValueRequired>true</ValueRequired>
+    </VariableConfiguration>
+    <VariableConfiguration xsi:type="StringVariableConfiguration" xml:space="preserve">
+      <Id>1baf05a4-66a7-4b57-adba-8831ae6d665a</Id>
+      <DisplayName>Output</DisplayName>
+      <ModifiedTime>2013-03-22T21:12:09.4816409Z</ModifiedTime>
+      <string />
+      <Scope>
+        <Family>ProcessInstanceOut</Family>
+        <ControllingItemId>7377c889-72ee-4377-952d-3131369292f7</ControllingItemId>
+      </Scope>
+      <Multiline>true</Multiline>
+    </VariableConfiguration>
+    <VariableConfiguration xsi:type="BooleanVariableConfiguration" xml:space="preserve">
+      <Id>d7a43316-e91f-40f8-a882-e9a3ba93f867</Id>
+      <DisplayName>Destination_Reachable</DisplayName>
+      <boolean>true</boolean>
+      <Scope>
+        <Family>ProcessInstanceOut</Family>
+        <ControllingItemId>7377c889-72ee-4377-952d-3131369292f7</ControllingItemId>
+      </Scope>
+    </VariableConfiguration>
+    <VariableConfiguration xsi:type="BooleanVariableConfiguration" xml:space="preserve">
+      <Id>a642d898-0ead-4e69-8ff5-a28003b4d015</Id>
+      <DisplayName>Successful_Ping</DisplayName>
+      <boolean>true</boolean>
+      <Scope>
+        <Family>ProcessInstanceOut</Family>
+        <ControllingItemId>7377c889-72ee-4377-952d-3131369292f7</ControllingItemId>
+      </Scope>
+    </VariableConfiguration>
+  </VariableDefinitions>
+  <Notes />
+  <SmallImageReference xsi:type="ImageReferenceContained">
+    <FriendlyName>Ping_16.bmp</FriendlyName>
+    <Bitmap>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAT9JREFUOE+dkj9Lw1AUxdXFb+Gn6KBDF7+D0C4uioU6is4WXZq6SN0kk12rBqWC8CYfLS0upnGRUJBmzOIYIhx7Xn2leU1q8JGbZHjnd8/9s7qS87iuC16Nomjy4hPnVP5eI2B94xnFfRfd9y889SMIIRR04eyUyjBDAwih+O3zOx0Qr8WonZ3j2rYTdCEH2NyylIvCdkc5cZyHdAe0dHR8grt7Z3ZByq7KqOOxI5YDCKlUD/EiZXaWPG3cO6hg6Hn/h1BMyNJk7fYtsoJClsFyUiEUhmGoIgiCafgBfH+komFZSsiGsrELEA3geMxF8Sb2NYBCjpYj5qhnIBMwvygmgKJ64wKXzaskgLb1kmgXu6cfGLxOHaRtZsKB548VwNy0Xq+fKCGziWwW7TIjv/qfAJb4577Mj7DVuoGOPOIfG39kIyvaHWoAAAAASUVORK5CYII=</Bitmap>
+  </SmallImageReference>
+  <LargeImageReference xsi:type="ImageReferenceContained">
+    <FriendlyName>Ping_32.bmp</FriendlyName>
+    <Bitmap>iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAsFJREFUWEfFlt9LU2EYx0/ZMDL/Axl11WUQRY3spsu6EMKrIK8sJkQEsiCK6KKLmgpSjEr6QbQCi0VFSS6cZeTMpEgOjdacMjZCSDkic226Pe37smdsZ2e6s3PcBg/vOe/7nvf5nO/7nmffLZKJv2g0SoqiaK648k+SdmyXpOXluNRgaZLSq3GpubnJxOzZpWRZJrf7cUl4PC+IwzsySgi//4toTSVggEarlwrj4p0/xGHvn6COq0EBACjTAVwuV1FygLiHA0XR5wmYB4C3ZknXU+BG/1ehAre6FDh9+zOduz+hGZDx4PE2uuBwEAPsPzpEjQd680p0dk4L2RGAwL0ugJYzg9T9aJIe+IIlMeB7Sh2/bXTde0UsikN4yOYs2gYAIemRbHDLcys6A+O/5slqH9Q8MFAgNPdJJIYCuMe+qyGQnAPjugBAeWvoJx2+9IZWGtaKQJCQ5WSAbZaTAgItX6u/DN0AgDh18yPZ746XAHBiLIrrySlZQCHy1x/e5/t4DKpVtAU8aSmeon2OV+IccB8UYIBQKEz+bCLxVeRaLkBaBQpzdAFgciCqiPPwPbwgHkYCJCz3NhjrcTrLjusGwAORmSf07vluSu1cEMlRfNRVDf8LQuqcEqwAVKoqqfqhwLfzFJw6JpKjBqAtnMM1H2BIjnGGMAUgk05STG6l+Pw1c96oGqp0KkaJsJUyieH6QWQSo0SxFqLVSB0hlpyUiNiILEljEDi5+Ka1AgUF/YXFBfe8dcpsG/2d6TIGYMTRpNcUmh7bQ7HZh9VDGHU0P+YWRZFCW82hFp7OqKNxj4Vob/dLQtmuCGIzHA3MS3uvrzIAo45GyymdveenXV3P6ETPyMYQRh2NlktCX99rmVovv6Xk1vT6EDVzNOUORE0djRZEoaHYdEezEUBNHI0aoi6ORm0c6uJoGKJujiYH8B9ltf4Y1YlW+gAAAABJRU5ErkJggg==</Bitmap>
+  </LargeImageReference>
+  <ROITimeSaved>
+    <Milliseconds>900000</Milliseconds>
+    <Units>Minutes</Units>
+  </ROITimeSaved>
+  <Atomic>true</Atomic>
+  <GeneralHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </GeneralHelp>
+  <GeneralInstanceHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </GeneralInstanceHelp>
+  <InputHelp xsi:type="CustomHelpAlias">
+    <Alias>IDH_TAP_PROP_ATOMIC_WINDOWSNETWORK_PING_INPUTS</Alias>
+  </InputHelp>
+  <InputInstanceHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </InputInstanceHelp>
+  <OutputHelp xsi:type="CustomHelpAlias">
+    <Alias>IDH_TAP_PROP_ATOMIC_WINDOWSNETWORK_PING_OUTPUTS</Alias>
+  </OutputHelp>
+  <ValidTargetTypeNames>
+    <string>Tidal.Automation.Windows.Common.WindowsTargetConfiguration, Tidal.Automation.Windows.Common</string>
+  </ValidTargetTypeNames>
+  <ValidTargetTypeExtensionIds>
+    <guid>2097ba7b-3e94-0c5b-8243-90df2cca8626</guid>
+  </ValidTargetTypeExtensionIds>
+  <ValidRuntimeUserTypeNames>
+    <string>Tidal.Automation.Windows.Common.WindowsUserConfiguration, Tidal.Automation.Windows.Common</string>
+  </ValidRuntimeUserTypeNames>
+  <GroupName>Networking</GroupName>
+</ProcessConfiguration>

@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<ProcessConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:space="preserve">
+  <Id>61c01a32-66e3-4315-91c3-57b433379bac</Id>
+  <DisplayName>Stop Windows Process</DisplayName>
+  <VersionNumber>-1</VersionNumber>
+  <CreatedTime>2013-05-12T21:32:16.3853276Z</CreatedTime>
+  <ModifiedTime>2013-05-17T20:42:02.000079Z</ModifiedTime>
+  <Version>3.0.0.903</Version>
+  <TargetLoadBalancer xsi:type="RequireOverrideLoadBalancer" />
+  <AuditStarts>true</AuditStarts>
+  <AuditSuccesses>true</AuditSuccesses>
+  <WorkflowId>a1914bfa-9c38-47df-9338-132a9138b435</WorkflowId>
+  <CategoryIds />
+  <TriggerOwner>3735b75d-4080-4632-a3b4-185384d778ce</TriggerOwner>
+  <Triggers>
+    <TriggerDefinition>
+      <Event xsi:type="AdHocEventDefinition">
+        <Id>e57e75b7-b525-4011-822c-c9e9329e622f</Id>
+        <DisplayName>Started by User</DisplayName>
+        <Imported>true</Imported>
+        <Identities />
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>eaefcd02-a5f8-4077-9ba2-f61c70aebd47</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>43227ff5-6d71-4b27-a8ff-76ab511febce</TriggerId>
+    </TriggerDefinition>
+    <TriggerDefinition>
+      <Event xsi:type="StartProcessEventDefinition">
+        <Id>630f2355-0b7c-4a0f-8975-2f8e2bce41e3</Id>
+        <DisplayName>Started by Parent Process</DisplayName>
+        <Imported>true</Imported>
+        <ProcessIds />
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>f190f19e-2d05-4a73-96e0-a4746cc8ca64</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>08f4067c-af28-4305-b20d-930a99556f2f</TriggerId>
+    </TriggerDefinition>
+    <TriggerDefinition>
+      <Event xsi:type="NorthboundEventDefinition">
+        <Id>bba224fe-7cbf-3db5-cab8-b1efc03eec87</Id>
+        <DisplayName>Started by Web Service</DisplayName>
+        <Imported>true</Imported>
+        <NorthboundName>StopWindowsProcess</NorthboundName>
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>514cb805-9c77-fb70-9235-4eb584a9facb</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>7befbc67-4086-3cb0-6aa3-12a9e124235b</TriggerId>
+    </TriggerDefinition>
+  </Triggers>
+  <VariableDefinitions>
+    <VariableConfiguration xsi:type="StringVariableConfiguration" xml:space="preserve">
+      <Id>626f54e1-b8e1-4cc2-a96d-2aa5415104ba</Id>
+      <DisplayName>PID</DisplayName>
+      <string />
+      <Scope>
+        <Family>ProcessInstanceIn</Family>
+        <ControllingItemId>61c01a32-66e3-4315-91c3-57b433379bac</ControllingItemId>
+      </Scope>
+    </VariableConfiguration>
+  </VariableDefinitions>
+  <Notes />
+  <SmallImageReference xsi:type="ImageReferenceContained">
+    <FriendlyName>StopWindowsProcess.png</FriendlyName>
+    <Bitmap>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAr5JREFUOE+1kltI01Ecx0cYYRpEZD3UQz3Viw9l9iAlQoYYlmmgVopFGMEU7WLm1GxdzJzZ380LCxdaoTLTjMpLOI280QorL5Wlm0zndOY2GSla69NfiSKoqIcOHM45cL6f7+97zk8i+R9jpGDbs+nb4Q5LYZD9n/mc8YKc9VAbC1mbGAmU8NcQ80UfB6nLoXgr1MTy6fhaXvm5kRzmQ0Dcmhd/BOXm+ctc8o2QuQpuBcPNfTij3WnevoLQKF92JLhxstKDC/qVCINeaCY9OXHP6/N3aMflLXdJFcVZq+FOOOT5MBEkoTR4AwEx3uxNXUzGIw8Ur9254XCnaHTpz9H6T6y2dEYuo+ywN8qEEGp2eVG7bhEl8uM8ftpA39suXr1+SluPllpTFNkvPX8AfFU7YwPlVwiRVhGV+YSYrFb8D6opL6/GbDYzNm5l3GrFbLHwfmAAvV7PrXo5LS0tbgsRQoT8stDTEJ4BBbVQch8uFTswGoyYRy3Y7DbsDgfWiQ8MW8Z40/+OZl0z1dXV0gXAgattlv3pcCwHKnWiuAwamgYYMBgYE53vPnhAkUaDQhBQFhdjMA2jf/4crVbbI/FThe2JPOckQnRPuw7ax5CUC+0dLxg0DjFpty+IT8lkxEmlnExJEauw0C9GqaqqmpEE5cpLI2QQmeFC0M5R2gCx4rlJ1/4N4EChVHI0Pp6I6GiOieuYGMVoMlFZUTEjCZU/PB0pcykPnHEIyZeHrh1Ja60IOmSipLSO7t5eppxO1JobpKSnI01M5Kz8PLapKQxidYUFBX2/bK7Nu8tTEzM0nfX1dZiGh5md+8Rn1xdxupiZneXj9DQ6nY7s7Oyk33bn/Bep1VdaxJx0dXVhFR/TZrNhNBppbGxEoVBo1Wr14j+29/wFpVIZLwhCt7h3ajQap0ql6pl3zs/PXzIv/gprvPJQOuU76wAAAABJRU5ErkJggg==</Bitmap>
+  </SmallImageReference>
+  <LargeImageReference xsi:type="ImageReferenceContained">
+    <FriendlyName>StopWindowsProcess32.png</FriendlyName>
+    <Bitmap>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</Bitmap>
+  </LargeImageReference>
+  <Atomic>true</Atomic>
+  <GeneralHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </GeneralHelp>
+  <GeneralInstanceHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </GeneralInstanceHelp>
+  <InputHelp xsi:type="CustomHelpAlias">
+    <Alias>IDH_TAP_PROP_ATOMIC_WINDOWS_STOPPROCESS_INPUTS</Alias>
+  </InputHelp>
+  <InputInstanceHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </InputInstanceHelp>
+  <OutputHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </OutputHelp>
+  <ValidTargetTypeNames>
+    <string>Tidal.Automation.Windows.Common.WindowsTargetConfiguration, Tidal.Automation.Windows.Common</string>
+  </ValidTargetTypeNames>
+  <ValidTargetTypeExtensionIds>
+    <guid>2097ba7b-3e94-0c5b-8243-90df2cca8626</guid>
+  </ValidTargetTypeExtensionIds>
+  <ValidRuntimeUserTypeNames>
+    <string>Tidal.Automation.Windows.Common.WindowsUserConfiguration, Tidal.Automation.Windows.Common</string>
+  </ValidRuntimeUserTypeNames>
+  <GroupName>Microsoft Windows</GroupName>
+</ProcessConfiguration>

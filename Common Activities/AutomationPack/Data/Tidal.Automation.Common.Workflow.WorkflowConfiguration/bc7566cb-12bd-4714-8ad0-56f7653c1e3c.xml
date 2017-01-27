@@ -1,0 +1,665 @@
+<?xml version="1.0"?>
+<WorkflowConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:space="preserve">
+  <Id>bc7566cb-12bd-4714-8ad0-56f7653c1e3c</Id>
+  <DisplayName>Ping</DisplayName>
+  <VersionNumber>3</VersionNumber>
+  <CreatedTime>2013-05-12T21:32:16.9313591Z</CreatedTime>
+  <ModifiedTime>2013-05-17T20:38:56.4058246Z</ModifiedTime>
+  <FirstActivity xsi:type="RootNode">
+    <Id>0635fa40-98a0-426a-b40a-80b4c5f49194</Id>
+    <DisplayName />
+    <Children>
+      <ActivityNode xsi:type="ExecuteActivityNode">
+        <Id>0d5c6667-c5a4-4f20-813a-0f2dad284013</Id>
+        <DisplayName>Check for Invalid Characters</DisplayName>
+        <Children>
+          <ActivityNode xsi:type="FailedBranchPlaceholderNode">
+            <Id>e996f2ac-7c21-454a-80b5-cd5bbf30aafe</Id>
+            <ActivityNodeId>b64f97d8-27d6-446a-9b4d-05166ac17daa</ActivityNodeId>
+            <CompletedId>31b4f489-6124-4212-b6a7-af0b594e613a</CompletedId>
+          </ActivityNode>
+          <ActivityNode xsi:type="ConditionBranchNode">
+            <Id>3b9694fe-47af-4ce3-8581-54b842930c6d</Id>
+            <DisplayName>Invalid Character Present in Input</DisplayName>
+            <Children>
+              <ActivityNode xsi:type="CompletedNode">
+                <Id>5b2d06c4-53a0-463b-8d8b-58059c07cf75</Id>
+                <CompletedType>FailedNotCompleted</CompletedType>
+                <ResultMessage>
+                  <HardcodedValue>Invalid input string.  Process terminated.</HardcodedValue>
+                </ResultMessage>
+              </ActivityNode>
+            </Children>
+            <Condition>
+              <Id>00000000-0000-0000-0000-000000000000</Id>
+              <Conditions>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>38de25c8-5f8a-4cd6-b124-21dc859256a7</Id>
+                  <Expression xsi:type="SubstitutableNumber">
+                    <HardcodedValue>0</HardcodedValue>
+                  </Expression>
+                  <Comparison>GreaterThan</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>MatchCount</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>b64f97d8-27d6-446a-9b4d-05166ac17daa</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+              </Conditions>
+            </Condition>
+          </ActivityNode>
+        </Children>
+        <Configuration xsi:type="RegExActivityConfiguration" xml:space="preserve">
+          <Id>b64f97d8-27d6-446a-9b4d-05166ac17daa</Id>
+          <DisplayName>Check for Invalid Characters</DisplayName>
+          <TargetLoadBalancer xsi:type="SingleTargetLoadBalancer">
+            <SingleTargetId>
+              <HardcodedValue>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</HardcodedValue>
+            </SingleTargetId>
+          </TargetLoadBalancer>
+          <InheritTarget>false</InheritTarget>
+          <ContainingProcessId>7377c889-72ee-4377-952d-3131369292f7</ContainingProcessId>
+          <InputString>
+            <FormattedCode>{0}</FormattedCode>
+            <References>
+              <VariableReference xsi:type="PropertyReference">
+                <DisplayPath>Process.Variables.Input.Destination</DisplayPath>
+                <LinkChain />
+                <ObjectId>958246a8-54ed-490c-90cf-00b6160df576</ObjectId>
+                <ObjectType>GlobalVariable</ObjectType>
+              </VariableReference>
+            </References>
+          </InputString>
+          <MatchCase>false</MatchCase>
+          <RegularExpression>
+            <HardcodedValue>[&amp;|]</HardcodedValue>
+          </RegularExpression>
+        </Configuration>
+      </ActivityNode>
+      <ActivityNode xsi:type="ExecuteActivityNode">
+        <Id>2507aa16-b2cc-45f8-8f91-178069ed763e</Id>
+        <DisplayName>Ping Host</DisplayName>
+        <Children>
+          <ActivityNode xsi:type="FailedBranchPlaceholderNode">
+            <Id>97f950a9-41da-43a0-bf9e-9d208074e039</Id>
+            <ActivityNodeId>fdc47e7e-420b-43b6-bac0-6061f97faa0c</ActivityNodeId>
+            <CompletedId>d906aff1-26d6-43c7-9e58-d2ceec78f07b</CompletedId>
+          </ActivityNode>
+        </Children>
+        <Configuration xsi:type="WindowsPowerShellScriptActivityConfiguration" xml:space="preserve">
+          <Id>fdc47e7e-420b-43b6-bac0-6061f97faa0c</Id>
+          <DisplayName>Ping Host</DisplayName>
+          <TargetLoadBalancer xsi:type="ProcessTargetLoadBalancer" />
+          <ContainingProcessId>7377c889-72ee-4377-952d-3131369292f7</ContainingProcessId>
+          <WorkingDirectory>
+            <HardcodedValue />
+          </WorkingDirectory>
+          <FailReturnCodeNonZero>false</FailReturnCodeNonZero>
+          <UseTaskScheduler>false</UseTaskScheduler>
+          <TimeWindow>
+            <Milliseconds>300000</Milliseconds>
+            <Units>Minutes</Units>
+          </TimeWindow>
+          <Script>
+            <HardcodedValue>param( [string]$Destination)
+
+ping $Destination</HardcodedValue>
+          </Script>
+          <Arguments>
+            <SubstitutableObject xsi:type="SubstitutableString">
+              <FormattedCode>{0}</FormattedCode>
+              <References>
+                <VariableReference xsi:type="PropertyReference">
+                  <DisplayPath>Process.Variables.Input.Destination</DisplayPath>
+                  <LinkChain />
+                  <ObjectId>958246a8-54ed-490c-90cf-00b6160df576</ObjectId>
+                  <ObjectType>GlobalVariable</ObjectType>
+                </VariableReference>
+              </References>
+            </SubstitutableObject>
+          </Arguments>
+          <Use32BitPowerShell>false</Use32BitPowerShell>
+        </Configuration>
+      </ActivityNode>
+      <ActivityNode xsi:type="SwitchNode">
+        <Id>f12d68ed-c52d-4a7c-b79a-ce3ac682e106</Id>
+        <DisplayName>Check Failure Code</DisplayName>
+        <Children>
+          <ActivityNode xsi:type="ConditionBranchNode">
+            <Id>6050d53d-725e-452c-ad6e-aff51c36a764</Id>
+            <DisplayName>RC 9009 - Ping Not Found</DisplayName>
+            <Children>
+              <ActivityNode xsi:type="CompletedNode">
+                <Id>a72fc17f-9a49-45e7-a703-07381a71756f</Id>
+                <Notes>Fail the entire process</Notes>
+                <CompletedType>FailedNotCompleted</CompletedType>
+                <ResultMessage>
+                  <FormattedCode>{0}</FormattedCode>
+                  <References>
+                    <VariableReference xsi:type="PropertyReference">
+                      <DisplayPath>Workflow.Ping Host.Output</DisplayPath>
+                      <LinkChain>
+                        <Link xsi:type="PropertyNameLink">
+                          <PropertyName>Output</PropertyName>
+                        </Link>
+                      </LinkChain>
+                      <ObjectId>fdc47e7e-420b-43b6-bac0-6061f97faa0c</ObjectId>
+                      <ObjectType>ActivityInstance</ObjectType>
+                    </VariableReference>
+                  </References>
+                </ResultMessage>
+              </ActivityNode>
+            </Children>
+            <Condition>
+              <Id>08082a99-5871-4f72-ba35-992493194e30</Id>
+              <Conditions>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>19c940bd-661a-48b4-a884-890846e5c1a6</Id>
+                  <Expression xsi:type="SubstitutableNumber">
+                    <HardcodedValue>9009</HardcodedValue>
+                  </Expression>
+                  <Comparison>Equals</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <DisplayPath>Workflow.Ping Host.Return Code</DisplayPath>
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>ReturnCode</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>fdc47e7e-420b-43b6-bac0-6061f97faa0c</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+              </Conditions>
+            </Condition>
+          </ActivityNode>
+          <ActivityNode xsi:type="ConditionBranchNode">
+            <Id>1803fa1a-95a8-4be4-aff2-190114f02438</Id>
+            <DisplayName>Destination Unreachable</DisplayName>
+            <Children>
+              <ActivityNode xsi:type="ExecuteActivityNode">
+                <Id>2ef34199-bc32-4b42-90ef-4df488f7b4d3</Id>
+                <DisplayName>Destinaton Reachable False</DisplayName>
+                <Children>
+                  <ActivityNode xsi:type="ConditionBranchNode">
+                    <Id>e172ddbc-1f96-4ecc-a1c9-5a4f9f9e1c98</Id>
+                    <Notes>If this activity execution fails, execute the contained workflow nodes.</Notes>
+                    <DisplayName>If Execution Fails</DisplayName>
+                    <Children>
+                      <ActivityNode xsi:type="CompletedNode">
+                        <Id>768609da-ddbd-46b8-9166-c0a756331993</Id>
+                        <Notes>Fail the entire process</Notes>
+                        <CompletedType>FailedNotCompleted</CompletedType>
+                        <ResultMessage>
+                          <FormattedCode>{0}</FormattedCode>
+                          <References>
+                            <VariableReference xsi:type="PropertyReference">
+                              <DisplayPath>Workflow.Destinaton Reachable False.Error Information</DisplayPath>
+                              <LinkChain>
+                                <Link xsi:type="PropertyNameLink">
+                                  <PropertyName>ErrorInformation</PropertyName>
+                                </Link>
+                              </LinkChain>
+                              <ObjectId>477f4033-049a-4494-ab27-3a1e59ba9935</ObjectId>
+                              <ObjectType>ActivityInstance</ObjectType>
+                            </VariableReference>
+                          </References>
+                        </ResultMessage>
+                      </ActivityNode>
+                    </Children>
+                    <Condition>
+                      <Id>00000000-0000-0000-0000-000000000000</Id>
+                      <Conditions>
+                        <ConditionDefinition xsi:type="VariableConditionDefinition">
+                          <Id>00000000-0000-0000-0000-000000000000</Id>
+                          <Expression xsi:type="SubstitutableBoolean">
+                            <HardcodedValue>true</HardcodedValue>
+                          </Expression>
+                          <Comparison>Equals</Comparison>
+                          <VariableReference xsi:type="PropertyReference">
+                            <LinkChain>
+                              <Link xsi:type="PropertyNameLink">
+                                <PropertyName>InstanceFailed</PropertyName>
+                              </Link>
+                            </LinkChain>
+                            <ObjectId>477f4033-049a-4494-ab27-3a1e59ba9935</ObjectId>
+                            <ObjectType>ActivityInstance</ObjectType>
+                          </VariableReference>
+                        </ConditionDefinition>
+                      </Conditions>
+                    </Condition>
+                  </ActivityNode>
+                </Children>
+                <Configuration xsi:type="SetVariableActivityConfiguration" xml:space="preserve">
+                  <Id>477f4033-049a-4494-ab27-3a1e59ba9935</Id>
+                  <DisplayName>Destinaton Reachable False</DisplayName>
+                  <TargetLoadBalancer xsi:type="SingleTargetLoadBalancer">
+                    <SingleTargetId>
+                      <HardcodedValue>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</HardcodedValue>
+                    </SingleTargetId>
+                  </TargetLoadBalancer>
+                  <InheritTarget>false</InheritTarget>
+                  <ContainingProcessId>7377c889-72ee-4377-952d-3131369292f7</ContainingProcessId>
+                  <VariableToSet>
+                    <DisplayPath>Process.Variables.Output.Destination_Reachable</DisplayPath>
+                    <LinkChain />
+                    <ObjectId>d7a43316-e91f-40f8-a882-e9a3ba93f867</ObjectId>
+                    <ObjectType>GlobalVariable</ObjectType>
+                  </VariableToSet>
+                  <NewValue xsi:type="SubstitutableBoolean">
+                    <HardcodedValue>false</HardcodedValue>
+                  </NewValue>
+                </Configuration>
+              </ActivityNode>
+              <ActivityNode xsi:type="ExecuteActivityNode">
+                <Id>5b661c11-094d-47ed-8492-6ec9d519caae</Id>
+                <DisplayName>Successful Ping False</DisplayName>
+                <Children>
+                  <ActivityNode xsi:type="ConditionBranchNode">
+                    <Id>729b7cac-1dad-4fe1-b3e2-78878c3531aa</Id>
+                    <Notes>If this activity execution fails, execute the contained workflow nodes.</Notes>
+                    <DisplayName>If Execution Fails</DisplayName>
+                    <Children>
+                      <ActivityNode xsi:type="CompletedNode">
+                        <Id>ec165748-f178-4b4e-b558-3b3ad498b3e8</Id>
+                        <Notes>Fail the entire process</Notes>
+                        <CompletedType>FailedNotCompleted</CompletedType>
+                        <ResultMessage>
+                          <FormattedCode>{0}</FormattedCode>
+                          <References>
+                            <VariableReference xsi:type="PropertyReference">
+                              <DisplayPath>Workflow.Successful Ping False.Error Information</DisplayPath>
+                              <LinkChain>
+                                <Link xsi:type="PropertyNameLink">
+                                  <PropertyName>ErrorInformation</PropertyName>
+                                </Link>
+                              </LinkChain>
+                              <ObjectId>37246c9c-0546-4eaf-93f6-3d26b7f20630</ObjectId>
+                              <ObjectType>ActivityInstance</ObjectType>
+                            </VariableReference>
+                          </References>
+                        </ResultMessage>
+                      </ActivityNode>
+                    </Children>
+                    <Condition>
+                      <Id>00000000-0000-0000-0000-000000000000</Id>
+                      <Conditions>
+                        <ConditionDefinition xsi:type="VariableConditionDefinition">
+                          <Id>00000000-0000-0000-0000-000000000000</Id>
+                          <Expression xsi:type="SubstitutableBoolean">
+                            <HardcodedValue>true</HardcodedValue>
+                          </Expression>
+                          <Comparison>Equals</Comparison>
+                          <VariableReference xsi:type="PropertyReference">
+                            <LinkChain>
+                              <Link xsi:type="PropertyNameLink">
+                                <PropertyName>InstanceFailed</PropertyName>
+                              </Link>
+                            </LinkChain>
+                            <ObjectId>37246c9c-0546-4eaf-93f6-3d26b7f20630</ObjectId>
+                            <ObjectType>ActivityInstance</ObjectType>
+                          </VariableReference>
+                        </ConditionDefinition>
+                      </Conditions>
+                    </Condition>
+                  </ActivityNode>
+                </Children>
+                <Configuration xsi:type="SetVariableActivityConfiguration" xml:space="preserve">
+                  <Id>37246c9c-0546-4eaf-93f6-3d26b7f20630</Id>
+                  <DisplayName>Successful Ping False</DisplayName>
+                  <TargetLoadBalancer xsi:type="SingleTargetLoadBalancer">
+                    <SingleTargetId>
+                      <HardcodedValue>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</HardcodedValue>
+                    </SingleTargetId>
+                  </TargetLoadBalancer>
+                  <InheritTarget>false</InheritTarget>
+                  <ContainingProcessId>7377c889-72ee-4377-952d-3131369292f7</ContainingProcessId>
+                  <VariableToSet>
+                    <DisplayPath>Process.Variables.Output.Successful_Ping</DisplayPath>
+                    <LinkChain />
+                    <ObjectId>a642d898-0ead-4e69-8ff5-a28003b4d015</ObjectId>
+                    <ObjectType>GlobalVariable</ObjectType>
+                  </VariableToSet>
+                  <NewValue xsi:type="SubstitutableBoolean">
+                    <HardcodedValue>false</HardcodedValue>
+                  </NewValue>
+                </Configuration>
+              </ActivityNode>
+            </Children>
+            <Condition>
+              <Id>90b17c4d-e0d5-40ae-b925-40a5d2faed34</Id>
+              <Operator>Or</Operator>
+              <Conditions>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>d350a0a7-2382-48ec-b6bf-43b8b3bf619a</Id>
+                  <Expression xsi:type="SubstitutableNumber">
+                    <HardcodedValue>1</HardcodedValue>
+                  </Expression>
+                  <Comparison>Equals</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <DisplayPath>Workflow.Ping Host.Return Code</DisplayPath>
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>ReturnCode</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>fdc47e7e-420b-43b6-bac0-6061f97faa0c</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>b03f146f-1b52-45f3-8cba-859b83c004b2</Id>
+                  <Expression xsi:type="SubstitutableWildcard">
+                    <HardcodedValue>*Destination host unreachable*</HardcodedValue>
+                  </Expression>
+                  <Comparison>Wildcard</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <DisplayPath>Workflow.Ping Host.Output</DisplayPath>
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>Output</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>fdc47e7e-420b-43b6-bac0-6061f97faa0c</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+              </Conditions>
+            </Condition>
+          </ActivityNode>
+          <ActivityNode xsi:type="ConditionBranchNode">
+            <Id>bf71ccc8-a349-41fe-a6a0-5a7dec8de5ab</Id>
+            <DisplayName>Ping Return Error</DisplayName>
+            <Children>
+              <ActivityNode xsi:type="ExecuteActivityNode">
+                <Id>998d9098-f3ba-43e2-b737-d1610eabb033</Id>
+                <DisplayName>Successful Ping False</DisplayName>
+                <Children>
+                  <ActivityNode xsi:type="ConditionBranchNode">
+                    <Id>2252ee11-09c1-4c7f-bf91-f24ad1ffd8b1</Id>
+                    <Notes>If this activity execution fails, execute the contained workflow nodes.</Notes>
+                    <DisplayName>If Execution Fails</DisplayName>
+                    <Children>
+                      <ActivityNode xsi:type="CompletedNode">
+                        <Id>4f12c1fe-9123-4400-bbb9-3c0ace90637a</Id>
+                        <Notes>Fail the entire process</Notes>
+                        <CompletedType>FailedNotCompleted</CompletedType>
+                        <ResultMessage>
+                          <FormattedCode>{0}</FormattedCode>
+                          <References>
+                            <VariableReference xsi:type="PropertyReference">
+                              <DisplayPath>Workflow.Successful Ping False.Error Information</DisplayPath>
+                              <LinkChain>
+                                <Link xsi:type="PropertyNameLink">
+                                  <PropertyName>ErrorInformation</PropertyName>
+                                </Link>
+                              </LinkChain>
+                              <ObjectId>bb8f7af6-ce57-4f8a-a2b1-98e6fea9540c</ObjectId>
+                              <ObjectType>ActivityInstance</ObjectType>
+                            </VariableReference>
+                          </References>
+                        </ResultMessage>
+                      </ActivityNode>
+                    </Children>
+                    <Condition>
+                      <Id>00000000-0000-0000-0000-000000000000</Id>
+                      <Conditions>
+                        <ConditionDefinition xsi:type="VariableConditionDefinition">
+                          <Id>00000000-0000-0000-0000-000000000000</Id>
+                          <Expression xsi:type="SubstitutableBoolean">
+                            <HardcodedValue>true</HardcodedValue>
+                          </Expression>
+                          <Comparison>Equals</Comparison>
+                          <VariableReference xsi:type="PropertyReference">
+                            <LinkChain>
+                              <Link xsi:type="PropertyNameLink">
+                                <PropertyName>InstanceFailed</PropertyName>
+                              </Link>
+                            </LinkChain>
+                            <ObjectId>bb8f7af6-ce57-4f8a-a2b1-98e6fea9540c</ObjectId>
+                            <ObjectType>ActivityInstance</ObjectType>
+                          </VariableReference>
+                        </ConditionDefinition>
+                      </Conditions>
+                    </Condition>
+                  </ActivityNode>
+                </Children>
+                <Configuration xsi:type="SetVariableActivityConfiguration" xml:space="preserve">
+                  <Id>bb8f7af6-ce57-4f8a-a2b1-98e6fea9540c</Id>
+                  <DisplayName>Successful Ping False</DisplayName>
+                  <TargetLoadBalancer xsi:type="SingleTargetLoadBalancer">
+                    <SingleTargetId>
+                      <HardcodedValue>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</HardcodedValue>
+                    </SingleTargetId>
+                  </TargetLoadBalancer>
+                  <InheritTarget>false</InheritTarget>
+                  <ContainingProcessId>7377c889-72ee-4377-952d-3131369292f7</ContainingProcessId>
+                  <VariableToSet>
+                    <DisplayPath>Process.Variables.Output.Successful_Ping</DisplayPath>
+                    <LinkChain />
+                    <ObjectId>a642d898-0ead-4e69-8ff5-a28003b4d015</ObjectId>
+                    <ObjectType>GlobalVariable</ObjectType>
+                  </VariableToSet>
+                  <NewValue xsi:type="SubstitutableBoolean">
+                    <HardcodedValue>false</HardcodedValue>
+                  </NewValue>
+                </Configuration>
+              </ActivityNode>
+            </Children>
+            <Condition>
+              <Id>f0e85d71-9888-4917-926c-4e841eea31b4</Id>
+              <Conditions>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>34171d4b-b8c6-4865-b510-c1af822bfdd5</Id>
+                  <Expression xsi:type="SubstitutableNumber">
+                    <HardcodedValue>1</HardcodedValue>
+                  </Expression>
+                  <Comparison>GreaterThan</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <DisplayPath>Workflow.Ping Host.Return Code</DisplayPath>
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>ReturnCode</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>fdc47e7e-420b-43b6-bac0-6061f97faa0c</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+              </Conditions>
+            </Condition>
+          </ActivityNode>
+          <ActivityNode xsi:type="ConditionBranchNode">
+            <Id>2287213c-90c5-4fcd-b834-16ff413c4730</Id>
+            <DisplayName>Ping Successful</DisplayName>
+            <Children>
+              <ActivityNode xsi:type="ExecuteActivityNode">
+                <Id>5caebc34-c680-43da-b35e-d713ab17b91d</Id>
+                <DisplayName>Successful Ping True</DisplayName>
+                <Children>
+                  <ActivityNode xsi:type="ConditionBranchNode">
+                    <Id>afef8093-7e2f-4d6c-af8e-82f142217674</Id>
+                    <Notes>If this activity execution fails, execute the contained workflow nodes.</Notes>
+                    <DisplayName>If Execution Fails</DisplayName>
+                    <Children>
+                      <ActivityNode xsi:type="CompletedNode">
+                        <Id>bec1e440-30e2-46bb-a652-0a5207c60b46</Id>
+                        <Notes>Fail the entire process</Notes>
+                        <CompletedType>FailedNotCompleted</CompletedType>
+                        <ResultMessage>
+                          <FormattedCode>{0}</FormattedCode>
+                          <References>
+                            <VariableReference xsi:type="PropertyReference">
+                              <DisplayPath>Workflow.Successful Ping True.Error Information</DisplayPath>
+                              <LinkChain>
+                                <Link xsi:type="PropertyNameLink">
+                                  <PropertyName>ErrorInformation</PropertyName>
+                                </Link>
+                              </LinkChain>
+                              <ObjectId>f554fced-2b4e-4349-846c-469891082c0a</ObjectId>
+                              <ObjectType>ActivityInstance</ObjectType>
+                            </VariableReference>
+                          </References>
+                        </ResultMessage>
+                      </ActivityNode>
+                    </Children>
+                    <Condition>
+                      <Id>00000000-0000-0000-0000-000000000000</Id>
+                      <Conditions>
+                        <ConditionDefinition xsi:type="VariableConditionDefinition">
+                          <Id>00000000-0000-0000-0000-000000000000</Id>
+                          <Expression xsi:type="SubstitutableBoolean">
+                            <HardcodedValue>true</HardcodedValue>
+                          </Expression>
+                          <Comparison>Equals</Comparison>
+                          <VariableReference xsi:type="PropertyReference">
+                            <LinkChain>
+                              <Link xsi:type="PropertyNameLink">
+                                <PropertyName>InstanceFailed</PropertyName>
+                              </Link>
+                            </LinkChain>
+                            <ObjectId>f554fced-2b4e-4349-846c-469891082c0a</ObjectId>
+                            <ObjectType>ActivityInstance</ObjectType>
+                          </VariableReference>
+                        </ConditionDefinition>
+                      </Conditions>
+                    </Condition>
+                  </ActivityNode>
+                </Children>
+                <Configuration xsi:type="SetVariableActivityConfiguration" xml:space="preserve">
+                  <Id>f554fced-2b4e-4349-846c-469891082c0a</Id>
+                  <DisplayName>Successful Ping True</DisplayName>
+                  <TargetLoadBalancer xsi:type="SingleTargetLoadBalancer">
+                    <SingleTargetId>
+                      <HardcodedValue>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</HardcodedValue>
+                    </SingleTargetId>
+                  </TargetLoadBalancer>
+                  <InheritTarget>false</InheritTarget>
+                  <ContainingProcessId>7377c889-72ee-4377-952d-3131369292f7</ContainingProcessId>
+                  <VariableToSet>
+                    <DisplayPath>Process.Variables.Output.Destination_Reachable</DisplayPath>
+                    <LinkChain />
+                    <ObjectId>d7a43316-e91f-40f8-a882-e9a3ba93f867</ObjectId>
+                    <ObjectType>GlobalVariable</ObjectType>
+                  </VariableToSet>
+                  <NewValue xsi:type="SubstitutableBoolean">
+                    <HardcodedValue>true</HardcodedValue>
+                  </NewValue>
+                </Configuration>
+              </ActivityNode>
+            </Children>
+            <Condition>
+              <Id>90b17c4d-e0d5-40ae-b925-40a5d2faed34</Id>
+              <Conditions>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>d350a0a7-2382-48ec-b6bf-43b8b3bf619a</Id>
+                  <Expression xsi:type="SubstitutableNumber">
+                    <HardcodedValue>0</HardcodedValue>
+                  </Expression>
+                  <Comparison>Equals</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <DisplayPath>Workflow.Ping Host.Return Code</DisplayPath>
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>ReturnCode</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>fdc47e7e-420b-43b6-bac0-6061f97faa0c</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+              </Conditions>
+            </Condition>
+          </ActivityNode>
+        </Children>
+      </ActivityNode>
+      <ActivityNode xsi:type="ExecuteActivityNode">
+        <Id>eb2f48bd-f5b0-400f-8f47-0ed07c0c254e</Id>
+        <DisplayName>Set Output</DisplayName>
+        <Children>
+          <ActivityNode xsi:type="ConditionBranchNode">
+            <Id>73c7dfa8-5945-4ef6-b649-06eef1aa6272</Id>
+            <Notes>If this activity execution fails, execute the contained workflow nodes.</Notes>
+            <DisplayName>If Execution Fails</DisplayName>
+            <Children>
+              <ActivityNode xsi:type="CompletedNode">
+                <Id>9fe34791-5208-4672-88cf-642166dea3c5</Id>
+                <Notes>Fail the entire process</Notes>
+                <CompletedType>FailedNotCompleted</CompletedType>
+                <ResultMessage>
+                  <FormattedCode>{0}</FormattedCode>
+                  <References>
+                    <VariableReference xsi:type="PropertyReference">
+                      <DisplayPath>Process.Variables.Output.Destination_Reachable</DisplayPath>
+                      <LinkChain />
+                      <ObjectId>d7a43316-e91f-40f8-a882-e9a3ba93f867</ObjectId>
+                      <ObjectType>GlobalVariable</ObjectType>
+                    </VariableReference>
+                  </References>
+                </ResultMessage>
+              </ActivityNode>
+            </Children>
+            <Condition>
+              <Id>00000000-0000-0000-0000-000000000000</Id>
+              <Conditions>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>00000000-0000-0000-0000-000000000000</Id>
+                  <Expression xsi:type="SubstitutableBoolean">
+                    <HardcodedValue>true</HardcodedValue>
+                  </Expression>
+                  <Comparison>Equals</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>InstanceFailed</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>38fb5938-46ea-49da-a769-cfce3791ee59</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+              </Conditions>
+            </Condition>
+          </ActivityNode>
+        </Children>
+        <Configuration xsi:type="SetVariableActivityConfiguration" xml:space="preserve">
+          <Id>38fb5938-46ea-49da-a769-cfce3791ee59</Id>
+          <DisplayName>Set Output</DisplayName>
+          <TargetLoadBalancer xsi:type="SingleTargetLoadBalancer">
+            <SingleTargetId>
+              <HardcodedValue>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</HardcodedValue>
+            </SingleTargetId>
+          </TargetLoadBalancer>
+          <InheritTarget>false</InheritTarget>
+          <ContainingProcessId>7377c889-72ee-4377-952d-3131369292f7</ContainingProcessId>
+          <VariableToSet>
+            <DisplayPath>Process.Variables.Output.Output</DisplayPath>
+            <LinkChain />
+            <ObjectId>1baf05a4-66a7-4b57-adba-8831ae6d665a</ObjectId>
+            <ObjectType>GlobalVariable</ObjectType>
+          </VariableToSet>
+          <NewValue xsi:type="SubstitutableString">
+            <FormattedCode>{0}</FormattedCode>
+            <References>
+              <VariableReference xsi:type="PropertyReference">
+                <DisplayPath>Workflow.Ping Host.Output</DisplayPath>
+                <LinkChain>
+                  <Link xsi:type="PropertyNameLink">
+                    <PropertyName>Output</PropertyName>
+                  </Link>
+                </LinkChain>
+                <ObjectId>fdc47e7e-420b-43b6-bac0-6061f97faa0c</ObjectId>
+                <ObjectType>ActivityInstance</ObjectType>
+              </VariableReference>
+            </References>
+          </NewValue>
+        </Configuration>
+      </ActivityNode>
+    </Children>
+  </FirstActivity>
+  <ProcessId>7377c889-72ee-4377-952d-3131369292f7</ProcessId>
+</WorkflowConfiguration>

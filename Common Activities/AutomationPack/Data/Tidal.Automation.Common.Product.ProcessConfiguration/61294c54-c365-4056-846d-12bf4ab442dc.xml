@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<ProcessConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:space="preserve">
+  <Id>61294c54-c365-4056-846d-12bf4ab442dc</Id>
+  <DisplayName>Stop Unix Process (via SSH)</DisplayName>
+  <VersionNumber>-1</VersionNumber>
+  <CreatedTime>2013-05-12T21:32:15.9016997Z</CreatedTime>
+  <ModifiedTime>2013-05-17T20:38:02.518589Z</ModifiedTime>
+  <Version>3.0.0.903</Version>
+  <TargetLoadBalancer xsi:type="RequireOverrideLoadBalancer" />
+  <AuditStarts>true</AuditStarts>
+  <AuditSuccesses>true</AuditSuccesses>
+  <WorkflowId>7d786f53-7227-4129-bdd5-0d1f1f48144a</WorkflowId>
+  <CategoryIds />
+  <TriggerOwner>3735b75d-4080-4632-a3b4-185384d778ce</TriggerOwner>
+  <Triggers>
+    <TriggerDefinition>
+      <Event xsi:type="AdHocEventDefinition">
+        <Id>86057ef3-9b00-4f48-af7e-4f1d4b3b206a</Id>
+        <DisplayName>Started by User</DisplayName>
+        <Imported>true</Imported>
+        <Identities />
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>75018242-da6b-4aec-a023-158d017bebbc</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>a77c36ff-f9e2-4bc9-b8fc-0db8b9d0817d</TriggerId>
+    </TriggerDefinition>
+    <TriggerDefinition>
+      <Event xsi:type="StartProcessEventDefinition">
+        <Id>db3b84d7-b0f4-44dd-8a46-3fc864bb9968</Id>
+        <DisplayName>Started by Parent Process</DisplayName>
+        <Imported>true</Imported>
+        <ProcessIds />
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>363faa13-8bc1-4250-beed-1fbdfb45a677</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>f2b66d46-56ae-4a78-b5fd-8b35929ee6a3</TriggerId>
+    </TriggerDefinition>
+    <TriggerDefinition>
+      <Event xsi:type="NorthboundEventDefinition">
+        <Id>a8e4b1cb-658d-0f2c-f1a3-c8d72382db9d</Id>
+        <DisplayName>Started by Web Service</DisplayName>
+        <Imported>true</Imported>
+        <NorthboundName>StopUnixProcessViaSSH</NorthboundName>
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>7be82484-c71f-cf14-f33b-5b2277c9cd0c</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>63b8f60f-709e-7199-d46e-811ed624a543</TriggerId>
+    </TriggerDefinition>
+  </Triggers>
+  <VariableDefinitions>
+    <VariableConfiguration xsi:type="StringVariableConfiguration" xml:space="preserve">
+      <Id>160b37e1-6cd2-4518-9d5d-9e32df0ac7c7</Id>
+      <DisplayName>PID</DisplayName>
+      <string />
+      <Scope>
+        <Family>ProcessInstanceIn</Family>
+        <ControllingItemId>61294c54-c365-4056-846d-12bf4ab442dc</ControllingItemId>
+      </Scope>
+    </VariableConfiguration>
+  </VariableDefinitions>
+  <Notes />
+  <SmallImageReference xsi:type="ImageReferenceContained">
+    <FriendlyName>StopUnixProcess.png</FriendlyName>
+    <Bitmap>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAi1JREFUOE+dk99rUmEYx99wbfsf+hvqJohFi9G6Hxi4dbFYUS03hQUNBBlBMcI4FO7oGgYnvRkrRUY0Eps/TldLZwrTSOvkkSOmszwesTZcW9/eo7B1kS174OV5Lp7v5/nB8xLSqY3Ec2Twce7fZcf1N8nZ+RxRvWpDz2k83gKc0ONw0ACbO2YGCPWHJ/8pQ608+FsH/0fpVKXldUfGcjzR8jw5PavrVE5UsTq35oqIG/d9GVEU1wVBqKTT6UoikXgbiUT04XC4qz34As+rYuZZEoVCAaXNMjbLZRSKRXwUBESjUQQCgcX2kP5Z3dV7L9JiVkThcxFyVUZVUVD+8hX5YgnvMx8QCobg9XoNbbtIpVIxIZtFiVZeXlnBI44DY7WCXVhAVsojGovB7XYn9wFd1/J93ZOKS3NJUoj2lSsSXf/2ScyhUq02xdNmM64bDLhlMtEuisjQUTwez/Y+oHtCcamL65mogYysYTX0eqcFUMCwLMaNRgyPjkJPfYmOIkoSni4tHQA0lyWld1KBZkwC0a7C7lze3UilUKvX4eCewDQzA8PUFG7fuQu5VkOWwuft9ncHOxgKuMjwm6aYnOdwcdq25vO9hJTPo7HzA7t7P+nbw3ajge9bWwgGg7BYLK3/0bSBB33knN1F+h8q5JTZ1XvSeMbpdC7SORGPx1Gmy5RlGfQm4Pf7wTCM2+FwHP3rkakJLMsarVbrBo3rHMfVbTZbUq08NzfXo4p/Abgjbw1YiGDaAAAAAElFTkSuQmCC</Bitmap>
+  </SmallImageReference>
+  <LargeImageReference xsi:type="ImageReferenceContained">
+    <FriendlyName>StopUnixProcess32.png</FriendlyName>
+    <Bitmap>iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAABc1JREFUWEfdVmtPk2cYfhCi0/gL3Bd+wACdcYJTYeIH4zYVHR6JVGDQUnCbpy2CWUU3zaBjOhXJZkSNw6SyjDk8IKadB4bKqHIQEbClSCk9oxzELLl23887FQQZH9p92JM8efu2zXNd93Vf9/W+QvzvVoIpMWSD1SRWmkwiZm9i8OpL7oyenOkvCVXZ/GJZVYmI1Ucz2KTkNtObO4EQlRVi4femoBFgcAaaoumFSKyGiD1UIsGocgn+0e8QMXuCR2BS8iM/g4epOiGWV0IsKPBLAvNJ9kVU+TwCj9AEsQUJlSVi9R8Efhki/hjEOzsVBQK+UjpmTNH4dKEbbU0i4VKTiM3XiVnaGbLnLPt8vV+CR6ilB0asQBiSZNZxr9/I9EOsoYrjD0HMytZNpNCAGDI0xdbE4HSFSCC55+shIjObJkIgMIZk2VfVKEZb/CP1Ogck98QIBMSQC/Q6EXuYxqxAAZ+pJgIZE2rBhFT61z+x4bjnESQ7V87g/F3QVvwPcSKhsphkt4oVl6wke7GYmxMXNLwRB7+bHyc+vFzLhpPGSybjLSPjLfy2VkRp/wMSsYeKxeoaCf5i9Dhs3qPRm5lVHHwVFhRY6cEiK5+q7lVGb0UVKUCjF6G2Bp/AnC+sMlZX0siREnLuZczy6KVPiEBHR4eKttFisaCtrQ0tLS24d+8e7t69a6ytrVWNX0RkRrEE45Fj2blyvo+k0ePfxlkEGE7AZqvVCpvNJjd/bm1tlQTu3LmD27dvo7q62mw0GsPHPioqI05EppPhMjluqe/af8D5O/rtNYvBqVofEYDb7YbT5YbL44GTP7s9cDidaGtvR11dHa5fv46qqirfhQsXxiNB1bLkvLnyccCZE4Gb2wnASUCddjt6XC64PUzECbujG9bOR7DYOtFu7ZAqEAFUVFSYA+Ip6rHq/v37UnIG6HY44PV54fF64CIFunt6JCkL/f7goQXND1px9epVlJeX4+zZs696AiGTUu1JYWqXIWxTl10ktdjFKpNBLPkpSQiEjMW4sbHR2NzcjIfU745HXRK0uKQE3x09im8OHEDe/v3I2b1b7jYiyCT+NJtx7tw5nDlzxjjsTISEpnbppmX1Yfpnf2HaJ30IS7fTI9hMYfQLmfIw5/8oEmwuNlmbxSqr5b4XFhXhq/x85O7di205OcjesgWazZuVNpBPmsmYV65cwalTp/CSwNr6pCnpPRKcQ4ivk9NdEOsbiEAFRFwRxNxcUmLkunXrFhoaGuTh3T1OSSD/4EHsysvDjtxcZG/dijSNBmlqNWxddukHbtWNGzdw7BiN+Iu12mwIS7VjulZRYKp2AHwv1tVBLC2HWERPxOidhlcJ8EHsbpafCfQQgT1UPYNvZvDMTCRt2oSNKSnocrAfFFPevHkTR6lNL89bbuSeS9nDNG4FnO7l2+2SUuVFZM52+6sEaKZRU1MDS4cN3U6XHLscnQ7Z27bh46wsbCTwxPXrsWrNGjhoOiQJUoLH8SAp9fK8pT/bJRj3fF2jcuX798soDUn+mN2UC9mjCFy8eNHI/WwiHzC42+fDl9R7JpCh1SI5NRVrN2yAKi2NssErSfQQUZoA6PX6YSaMP0Jup0o/+JXefn5Trny/+AjEvK8hZm/nUBrVAhonFY8Uj1YXyevr7cXjJ33o6x9A/8Ag7QE86e+H//FjeHx+uL1ecGAVFhaioKBg2BjOzUuS0cu95oo5iln2aKqcwTkdozSjTMgSGgwGc1lZGa5duwYH+YBBB58+xdCzZ3g6NISBwUE86euT5LxEgN1P4KOCKETM/lwnsz9ml/IMmLMD4u1PlThWXsPGzILjx4+Hnzx50nf69GlQxKK+vh4ukpoJDBEBv98vA4oD68SJEwzu27dv35hRHCLeoiqjtAYRqbHTI9guZVcqHxP8uYmKiorCaZtpgwjJHp8/f17Oe2VlJUpLS5/Lbn4deECimZytYnNxj4dv/m5kzxW4vwGAdHQivkIsfAAAAABJRU5ErkJggg==</Bitmap>
+  </LargeImageReference>
+  <Atomic>true</Atomic>
+  <GeneralHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </GeneralHelp>
+  <GeneralInstanceHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </GeneralInstanceHelp>
+  <InputHelp xsi:type="CustomHelpAlias">
+    <Alias>IDH_TAP_PROP_ATOMIC_UNIX_STOPPROCESS_INPUTS</Alias>
+  </InputHelp>
+  <InputInstanceHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </InputInstanceHelp>
+  <OutputHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </OutputHelp>
+  <ValidTargetTypeNames>
+    <string>Tidal.Automation.Ssh.Common.UnixTargetConfiguration, Tidal.Automation.Ssh.Common</string>
+  </ValidTargetTypeNames>
+  <ValidTargetTypeExtensionIds>
+    <guid>5598e74f-68e3-ec60-82a4-7d91b7824389</guid>
+  </ValidTargetTypeExtensionIds>
+  <ValidRuntimeUserTypeNames>
+    <string>Tidal.Automation.Ssh.Common.IOSUserConfiguration, Tidal.Automation.Ssh.Common</string>
+    <string>Tidal.Automation.BuiltinAdapter.Common.GenericRuntimeUserConfiguration, Tidal.Automation.BuiltinAdapter.Common</string>
+  </ValidRuntimeUserTypeNames>
+  <GroupName>Unix</GroupName>
+</ProcessConfiguration>

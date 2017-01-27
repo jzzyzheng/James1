@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<AutomationPackConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:space="preserve">
+  <Id>7635c9c6-cdf3-4df1-b609-e250be8f2efb</Id>
+  <DisplayName>Common Activities</DisplayName>
+  <Description>This automation pack will import common activities.</Description>
+  <VersionNumber>-1</VersionNumber>
+  <CreatedTime>2011-07-06T13:11:47.701286Z</CreatedTime>
+  <ModifiedTime>2013-05-17T22:19:40.28467Z</ModifiedTime>
+  <CompanyName>Cisco Systems, Inc.</CompanyName>
+  <Version>3.0.0.905</Version>
+  <ExportProductVersion>3.0.0.859</ExportProductVersion>
+  <PublishDate>2013-05-17T22:19:40.2378679Z</PublishDate>
+  <ImportDate>2013-05-12T21:32:18.2574356Z</ImportDate>
+  <DescriptionUrl />
+  <Copyright>Cisco Systems, Inc. 2015</Copyright>
+  <ObjectEntries />
+ <AutomationPacks>
+     <AutomatioPackInfo>
+      <Id>4bf83767-bb0c-4235-9537-d06e6299f2ea</Id>
+      <Company>Cisco Systems, Inc.</Company>
+      <DisplayName>Core</DisplayName>
+      <Version>3.0.0.0</Version>
+      <Description>This automation pack will import the default content to support other automation packs.</Description>
+    </AutomatioPackInfo>
+  </AutomationPacks>
+  <Adapters>
+    <AdapterInfo>
+      <Id>042b6e8a-90b1-4518-aa3e-398399e1b195</Id>
+      <Company>Cisco</Company>
+      <DisplayName>Core Functions Adapter</DisplayName>
+      <Version>3.0.0.0</Version>
+      <Description>Provides core functionality that is required by the Cisco Process Orchestrator Server.</Description>
+    </AdapterInfo>
+    <AdapterInfo>
+      <Id>cee9d27d-289e-4b68-89ce-e2093ee50a0f</Id>
+      <Company>Cisco</Company>
+      <DisplayName>Terminal Adapter</DisplayName>
+      <Version>3.0.0.0</Version>
+      <Description>Provides support for executing commands and scripts using SSH and Telnet connections.</Description>
+    </AdapterInfo>
+    <AdapterInfo>
+      <Id>e95e2c95-d69e-46f1-baf0-5d1009d7e169</Id>
+      <Company>Cisco</Company>
+      <DisplayName>Microsoft Windows Adapter</DisplayName>
+      <Version>3.0.0.0</Version>
+      <Description>Provides access to Windows activities and objects.</Description>
+    </AdapterInfo>
+  </Adapters>
+  <PageEntries />
+  <ReplaceUnexportableObject>true</ReplaceUnexportableObject>
+  <CommunityAP>false</CommunityAP>
+  <ImportCompanyNames />
+  <StyleCheckerIds />
+</AutomationPackConfiguration>

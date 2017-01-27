@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<WorkflowConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:space="preserve">
+  <Id>7d786f53-7227-4129-bdd5-0d1f1f48144a</Id>
+  <DisplayName>Stop Unix Process (via SSH)</DisplayName>
+  <VersionNumber>2</VersionNumber>
+  <CreatedTime>2013-05-12T21:32:15.7456907Z</CreatedTime>
+  <ModifiedTime>2013-05-17T20:38:02.75261Z</ModifiedTime>
+  <FirstActivity xsi:type="RootNode">
+    <Id>2f54dfe6-e7eb-44a7-97b7-87335db71655</Id>
+    <DisplayName />
+    <Children>
+      <ActivityNode xsi:type="ExecuteActivityNode">
+        <Id>0532bf6d-391b-4de7-940d-6e8001f50528</Id>
+        <DisplayName>Check for Invalid Characters</DisplayName>
+        <Children>
+          <ActivityNode xsi:type="FailedBranchPlaceholderNode">
+            <Id>124d00d5-9cb3-4f5f-8a21-7251e08b8149</Id>
+            <ActivityNodeId>4e8f5c56-ab95-4a7b-8723-f3b277979263</ActivityNodeId>
+            <CompletedId>16d18fbc-1e22-4c6b-abe3-a3f0c67e1e80</CompletedId>
+          </ActivityNode>
+          <ActivityNode xsi:type="ConditionBranchNode">
+            <Id>a46245bb-8d40-454c-86b3-13c1ca68328a</Id>
+            <DisplayName>Invalid Character Present in Input</DisplayName>
+            <Children>
+              <ActivityNode xsi:type="CompletedNode">
+                <Id>a6108901-833d-47f7-b0db-73ff9b3894ca</Id>
+                <CompletedType>FailedNotCompleted</CompletedType>
+                <ResultMessage>
+                  <HardcodedValue>Invalid input string.  Process terminated.</HardcodedValue>
+                </ResultMessage>
+              </ActivityNode>
+            </Children>
+            <Condition>
+              <Id>00000000-0000-0000-0000-000000000000</Id>
+              <Conditions>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>49361246-0e49-4079-bd9d-ee7c39db8416</Id>
+                  <Expression xsi:type="SubstitutableNumber">
+                    <HardcodedValue>0</HardcodedValue>
+                  </Expression>
+                  <Comparison>GreaterThan</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>MatchCount</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>4e8f5c56-ab95-4a7b-8723-f3b277979263</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+              </Conditions>
+            </Condition>
+          </ActivityNode>
+        </Children>
+        <Configuration xsi:type="RegExActivityConfiguration" xml:space="preserve">
+          <Id>4e8f5c56-ab95-4a7b-8723-f3b277979263</Id>
+          <DisplayName>Check for Invalid Characters</DisplayName>
+          <TargetLoadBalancer xsi:type="SingleTargetLoadBalancer">
+            <SingleTargetId>
+              <HardcodedValue>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</HardcodedValue>
+            </SingleTargetId>
+          </TargetLoadBalancer>
+          <InheritTarget>false</InheritTarget>
+          <ContainingProcessId>61294c54-c365-4056-846d-12bf4ab442dc</ContainingProcessId>
+          <InputString>
+            <FormattedCode>{0}</FormattedCode>
+            <References>
+              <VariableReference xsi:type="PropertyReference">
+                <DisplayPath>Process.Variables.Input.PID</DisplayPath>
+                <LinkChain />
+                <ObjectId>160b37e1-6cd2-4518-9d5d-9e32df0ac7c7</ObjectId>
+                <ObjectType>GlobalVariable</ObjectType>
+              </VariableReference>
+            </References>
+          </InputString>
+          <MatchCase>false</MatchCase>
+          <RegularExpression>
+            <HardcodedValue>[&amp;|]</HardcodedValue>
+          </RegularExpression>
+        </Configuration>
+      </ActivityNode>
+      <ActivityNode xsi:type="ExecuteActivityNode">
+        <Id>edf76dfe-8173-435b-8a1c-9e447be349ee</Id>
+        <DisplayName>Execute SSH Command</DisplayName>
+        <Children>
+          <ActivityNode xsi:type="ConditionBranchNode">
+            <Id>5ac9bb01-0061-46d2-9cee-9d4972b97e97</Id>
+            <Notes>If this execution fails, execute the contained workflow nodes.</Notes>
+            <DisplayName>If Execution Fails</DisplayName>
+            <Children>
+              <ActivityNode xsi:type="CompletedNode">
+                <Id>c4fea548-b26e-460d-8e4e-c6702cc55382</Id>
+                <CompletedType>FailedNotCompleted</CompletedType>
+                <ResultMessage>
+                  <FormattedCode>{0}</FormattedCode>
+                  <References>
+                    <VariableReference xsi:type="PropertyReference">
+                      <DisplayPath>Workflow.Execute SSH Command.Error Information</DisplayPath>
+                      <LinkChain>
+                        <Link xsi:type="PropertyNameLink">
+                          <PropertyName>ErrorInformation</PropertyName>
+                        </Link>
+                      </LinkChain>
+                      <ObjectId>ab4ac39a-4cc3-42de-8966-1a8b7432bb6d</ObjectId>
+                      <ObjectType>ActivityInstance</ObjectType>
+                    </VariableReference>
+                  </References>
+                </ResultMessage>
+              </ActivityNode>
+            </Children>
+            <Condition>
+              <Id>1893372f-8426-452f-9172-ea081138a3e1</Id>
+              <Conditions>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>8be76377-e590-4eed-a6be-322374258d73</Id>
+                  <Expression xsi:type="SubstitutableBoolean">
+                    <HardcodedValue>true</HardcodedValue>
+                  </Expression>
+                  <Comparison>Equals</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>InstanceFailed</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>ab4ac39a-4cc3-42de-8966-1a8b7432bb6d</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+              </Conditions>
+            </Condition>
+          </ActivityNode>
+        </Children>
+        <Configuration xsi:type="SshCommandActivityConfiguration" xml:space="preserve">
+          <Id>ab4ac39a-4cc3-42de-8966-1a8b7432bb6d</Id>
+          <DisplayName>Execute SSH Command</DisplayName>
+          <TargetLoadBalancer xsi:type="ProcessTargetLoadBalancer" />
+          <ContainingProcessId>61294c54-c365-4056-846d-12bf4ab442dc</ContainingProcessId>
+          <TimeOutPeriod>
+            <DisplayUnits>Minutes</DisplayUnits>
+            <Period>
+              <HardcodedValue>5</HardcodedValue>
+            </Period>
+          </TimeOutPeriod>
+          <AHFDelay>
+            <DisplayUnits>Seconds</DisplayUnits>
+            <Period>
+              <HardcodedValue>12</HardcodedValue>
+            </Period>
+          </AHFDelay>
+          <Command>
+            <FormattedCode>kill {0}</FormattedCode>
+            <References>
+              <VariableReference xsi:type="PropertyReference">
+                <DisplayPath>Process.Variables.Input.PID</DisplayPath>
+                <LinkChain />
+                <ObjectId>160b37e1-6cd2-4518-9d5d-9e32df0ac7c7</ObjectId>
+                <ObjectType>GlobalVariable</ObjectType>
+              </VariableReference>
+            </References>
+          </Command>
+          <Arguments />
+          <WorkingDirectory>
+            <HardcodedValue />
+          </WorkingDirectory>
+          <FailReturnCodeNonZero>true</FailReturnCodeNonZero>
+          <UseOpenSession>false</UseOpenSession>
+          <WaitingTimeoutPeriod>
+            <DisplayUnits>Minutes</DisplayUnits>
+            <Period>
+              <HardcodedValue>60</HardcodedValue>
+            </Period>
+          </WaitingTimeoutPeriod>
+        </Configuration>
+      </ActivityNode>
+    </Children>
+  </FirstActivity>
+  <ProcessId>61294c54-c365-4056-846d-12bf4ab442dc</ProcessId>
+</WorkflowConfiguration>

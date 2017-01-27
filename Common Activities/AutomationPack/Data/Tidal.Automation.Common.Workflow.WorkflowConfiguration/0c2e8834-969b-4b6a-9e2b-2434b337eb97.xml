@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<WorkflowConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:space="preserve">
+  <Id>0c2e8834-969b-4b6a-9e2b-2434b337eb97</Id>
+  <DisplayName>Convert Integer to IP Address</DisplayName>
+  <VersionNumber>2</VersionNumber>
+  <CreatedTime>2013-05-12T21:32:15.1216547Z</CreatedTime>
+  <ModifiedTime>2013-05-17T20:29:45.1161947Z</ModifiedTime>
+  <FirstActivity xsi:type="RootNode">
+    <Id>4e4929eb-f2f8-4b14-b9a0-86177046cc02</Id>
+    <DisplayName />
+    <Children>
+      <ActivityNode xsi:type="ExecuteActivityNode">
+        <Id>17657b13-913c-4b3d-b3e1-6775b615cd7c</Id>
+        <DisplayName>Convert Int to IP Address</DisplayName>
+        <Children>
+          <ActivityNode xsi:type="FailedBranchPlaceholderNode">
+            <Id>0b62fab6-52c3-43dc-84ca-98fce954f0a8</Id>
+            <ActivityNodeId>3b68a5ef-7598-4e5e-8c12-e68dc9f527e8</ActivityNodeId>
+            <CompletedId>0e99a85f-b3b7-4113-ab9a-f5d420f15a46</CompletedId>
+          </ActivityNode>
+        </Children>
+        <Configuration xsi:type="XslTransformActivityConfiguration" xml:space="preserve">
+          <Id>3b68a5ef-7598-4e5e-8c12-e68dc9f527e8</Id>
+          <DisplayName>Convert Int to IP Address</DisplayName>
+          <TargetLoadBalancer xsi:type="SingleTargetLoadBalancer">
+            <SingleTargetId>
+              <HardcodedValue>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</HardcodedValue>
+            </SingleTargetId>
+          </TargetLoadBalancer>
+          <InheritTarget>false</InheritTarget>
+          <ContainingProcessId>55e5e2e4-169a-482e-a4b6-3f999afb7fbb</ContainingProcessId>
+          <SourceText>
+            <HardcodedValue>&lt;str /&gt;</HardcodedValue>
+          </SourceText>
+          <TransformPath>
+            <HardcodedValue />
+          </TransformPath>
+          <XSLDocument>
+            <FormattedCode>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/xpath-functions"&gt;
+  &lt;xsl:output method="xml" indent="yes"/&gt;
+
+  &lt;xsl:template match="/"&gt;
+    &lt;xsl:call-template name="eval"&gt;
+      &lt;xsl:with-param name="AddressInteger"&gt;{0}&lt;/xsl:with-param&gt;
+      &lt;xsl:with-param name="Power"&gt;
+        &lt;xsl:value-of select="256*256*256"/&gt;
+      &lt;/xsl:with-param&gt;
+    &lt;/xsl:call-template&gt;
+  &lt;/xsl:template&gt;
+
+  &lt;xsl:template name="eval" &gt;
+    &lt;xsl:param name="AddressInteger" /&gt;
+    &lt;xsl:param name="Power" /&gt;
+    &lt;xsl:choose&gt;
+      &lt;xsl:when test="($AddressInteger div $Power) &amp;lt; 256"&gt;
+        &lt;xsl:choose&gt;
+          &lt;xsl:when test="($Power &gt;= 256)"&gt;
+            &lt;xsl:variable name="octet"&gt;
+              &lt;xsl:call-template name="eval"&gt;
+                &lt;xsl:with-param name="AddressInteger"&gt;
+                  &lt;xsl:value-of select="($AddressInteger mod $Power)"/&gt;
+                &lt;/xsl:with-param&gt;
+                &lt;xsl:with-param name="Power"&gt;
+                  &lt;xsl:value-of select="($Power div 256)"/&gt;
+                &lt;/xsl:with-param&gt;
+              &lt;/xsl:call-template&gt;
+            &lt;/xsl:variable&gt;
+            &lt;xsl:value-of select="concat(floor($AddressInteger div $Power),'.',$octet)"/&gt;
+          &lt;/xsl:when&gt;
+          &lt;xsl:otherwise&gt;
+            &lt;xsl:value-of select="$AddressInteger"/&gt;
+          &lt;/xsl:otherwise&gt;
+        &lt;/xsl:choose&gt;
+      &lt;/xsl:when&gt;
+      &lt;xsl:otherwise&gt;
+        &lt;xsl:value-of select="$AddressInteger"/&gt;
+      &lt;/xsl:otherwise&gt;
+    &lt;/xsl:choose&gt;
+  &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</FormattedCode>
+            <References>
+              <VariableReference xsi:type="PropertyReference">
+                <DisplayPath>Process.Variables.Input.Integer Representation</DisplayPath>
+                <LinkChain />
+                <ObjectId>7257bda2-5a3b-45a1-ad61-8abec667bd69</ObjectId>
+                <ObjectType>GlobalVariable</ObjectType>
+              </VariableReference>
+            </References>
+          </XSLDocument>
+          <OutputFormat>Text</OutputFormat>
+        </Configuration>
+      </ActivityNode>
+      <ActivityNode xsi:type="ExecuteActivityNode">
+        <Id>502d13e9-209c-4092-8217-6afef4777854</Id>
+        <DisplayName>Set Output Variable</DisplayName>
+        <Children>
+          <ActivityNode xsi:type="FailedBranchPlaceholderNode">
+            <Id>f8f81b10-86f4-4dc5-808c-a28fb4072051</Id>
+            <ActivityNodeId>9f9b04c6-9d08-4e64-803d-f055a550ff17</ActivityNodeId>
+            <CompletedId>2cb185d6-de9f-439c-9b7a-b24c98823cd3</CompletedId>
+          </ActivityNode>
+        </Children>
+        <Configuration xsi:type="SetVariableActivityConfiguration" xml:space="preserve">
+          <Id>9f9b04c6-9d08-4e64-803d-f055a550ff17</Id>
+          <DisplayName>Set Output Variable</DisplayName>
+          <TargetLoadBalancer xsi:type="SingleTargetLoadBalancer">
+            <SingleTargetId>
+              <HardcodedValue>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</HardcodedValue>
+            </SingleTargetId>
+          </TargetLoadBalancer>
+          <InheritTarget>false</InheritTarget>
+          <ContainingProcessId>55e5e2e4-169a-482e-a4b6-3f999afb7fbb</ContainingProcessId>
+          <VariableToSet>
+            <DisplayPath>Process.Variables.Output.IP Address</DisplayPath>
+            <LinkChain />
+            <ObjectId>96076968-6955-4716-8425-f5a6e10dc517</ObjectId>
+            <ObjectType>GlobalVariable</ObjectType>
+          </VariableToSet>
+          <NewValue xsi:type="SubstitutableString">
+            <FormattedCode>{0}</FormattedCode>
+            <References>
+              <VariableReference xsi:type="PropertyReference">
+                <DisplayPath>Workflow.Convert Int to IP Address.Output</DisplayPath>
+                <LinkChain>
+                  <Link xsi:type="PropertyNameLink">
+                    <PropertyName>Output</PropertyName>
+                  </Link>
+                </LinkChain>
+                <ObjectId>3b68a5ef-7598-4e5e-8c12-e68dc9f527e8</ObjectId>
+                <ObjectType>ActivityInstance</ObjectType>
+              </VariableReference>
+            </References>
+          </NewValue>
+        </Configuration>
+      </ActivityNode>
+    </Children>
+  </FirstActivity>
+  <ProcessId>55e5e2e4-169a-482e-a4b6-3f999afb7fbb</ProcessId>
+</WorkflowConfiguration>

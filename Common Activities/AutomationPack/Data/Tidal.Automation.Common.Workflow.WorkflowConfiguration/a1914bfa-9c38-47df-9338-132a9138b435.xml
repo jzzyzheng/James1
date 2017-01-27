@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<WorkflowConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:space="preserve">
+  <Id>a1914bfa-9c38-47df-9338-132a9138b435</Id>
+  <DisplayName>Stop Windows Process</DisplayName>
+  <VersionNumber>2</VersionNumber>
+  <CreatedTime>2013-05-12T21:32:16.2137177Z</CreatedTime>
+  <ModifiedTime>2013-05-17T20:42:02.2809042Z</ModifiedTime>
+  <FirstActivity xsi:type="RootNode">
+    <Id>8e704840-1451-4fef-b630-c89a36717def</Id>
+    <DisplayName />
+    <Children>
+      <ActivityNode xsi:type="ExecuteActivityNode">
+        <Id>98525d41-c590-4c3f-93cf-69503b82e1f2</Id>
+        <DisplayName>Check for Invalid Characters</DisplayName>
+        <Children>
+          <ActivityNode xsi:type="FailedBranchPlaceholderNode">
+            <Id>d8dcf9d3-2ecc-481d-b012-5c12f735f1d4</Id>
+            <ActivityNodeId>520339c1-b3f4-47e9-8417-600704442235</ActivityNodeId>
+            <CompletedId>cf5f3f23-c3aa-4677-8aa6-9a79a9fa276d</CompletedId>
+          </ActivityNode>
+          <ActivityNode xsi:type="ConditionBranchNode">
+            <Id>1098f945-8e80-4c89-b3fd-d57edbbb374e</Id>
+            <DisplayName>Invalid Character Present in Input</DisplayName>
+            <Children>
+              <ActivityNode xsi:type="CompletedNode">
+                <Id>d9a06228-6b58-4a48-9765-036655d4ec6f</Id>
+                <CompletedType>FailedNotCompleted</CompletedType>
+                <ResultMessage>
+                  <HardcodedValue>Invalid input string.  Process terminated.</HardcodedValue>
+                </ResultMessage>
+              </ActivityNode>
+            </Children>
+            <Condition>
+              <Id>00000000-0000-0000-0000-000000000000</Id>
+              <Conditions>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>38de25c8-5f8a-4cd6-b124-21dc859256a7</Id>
+                  <Expression xsi:type="SubstitutableNumber">
+                    <HardcodedValue>0</HardcodedValue>
+                  </Expression>
+                  <Comparison>GreaterThan</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>MatchCount</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>520339c1-b3f4-47e9-8417-600704442235</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+              </Conditions>
+            </Condition>
+          </ActivityNode>
+        </Children>
+        <Configuration xsi:type="RegExActivityConfiguration" xml:space="preserve">
+          <Id>520339c1-b3f4-47e9-8417-600704442235</Id>
+          <DisplayName>Check for Invalid Characters</DisplayName>
+          <TargetLoadBalancer xsi:type="SingleTargetLoadBalancer">
+            <SingleTargetId>
+              <HardcodedValue>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</HardcodedValue>
+            </SingleTargetId>
+          </TargetLoadBalancer>
+          <InheritTarget>false</InheritTarget>
+          <ContainingProcessId>61c01a32-66e3-4315-91c3-57b433379bac</ContainingProcessId>
+          <InputString>
+            <FormattedCode>{0}</FormattedCode>
+            <References>
+              <VariableReference xsi:type="PropertyReference">
+                <DisplayPath>Process.Variables.Input.PID</DisplayPath>
+                <LinkChain />
+                <ObjectId>626f54e1-b8e1-4cc2-a96d-2aa5415104ba</ObjectId>
+                <ObjectType>GlobalVariable</ObjectType>
+              </VariableReference>
+            </References>
+          </InputString>
+          <MatchCase>false</MatchCase>
+          <RegularExpression>
+            <HardcodedValue>[&amp;|]</HardcodedValue>
+          </RegularExpression>
+        </Configuration>
+      </ActivityNode>
+      <ActivityNode xsi:type="ExecuteActivityNode">
+        <Id>31b9b220-925e-47b4-91a8-1cc50336f7ae</Id>
+        <DisplayName>Kill a Windows Process</DisplayName>
+        <Children>
+          <ActivityNode xsi:type="ConditionBranchNode">
+            <Id>99bfe9b3-7db5-42ae-bba2-e5e0ba870d51</Id>
+            <Notes>If this activity execution fails, execute the contained workflow nodes.</Notes>
+            <DisplayName>If Execution Fails</DisplayName>
+            <Children>
+              <ActivityNode xsi:type="CompletedNode">
+                <Id>857bd873-e47e-45c0-ae10-4c865957f28e</Id>
+                <CompletedType>FailedNotCompleted</CompletedType>
+                <ResultMessage>
+                  <FormattedCode>{0}</FormattedCode>
+                  <References>
+                    <VariableReference xsi:type="PropertyReference">
+                      <DisplayPath>Workflow.Kill a Windows Process.Error Information</DisplayPath>
+                      <LinkChain>
+                        <Link xsi:type="PropertyNameLink">
+                          <PropertyName>ErrorInformation</PropertyName>
+                        </Link>
+                      </LinkChain>
+                      <ObjectId>9562507a-5e17-4399-83af-98cfb7f6665d</ObjectId>
+                      <ObjectType>ActivityInstance</ObjectType>
+                    </VariableReference>
+                  </References>
+                </ResultMessage>
+              </ActivityNode>
+            </Children>
+            <Condition>
+              <Id>00000000-0000-0000-0000-000000000000</Id>
+              <Conditions>
+                <ConditionDefinition xsi:type="VariableConditionDefinition">
+                  <Id>00000000-0000-0000-0000-000000000000</Id>
+                  <Expression xsi:type="SubstitutableBoolean">
+                    <HardcodedValue>true</HardcodedValue>
+                  </Expression>
+                  <Comparison>Equals</Comparison>
+                  <VariableReference xsi:type="PropertyReference">
+                    <LinkChain>
+                      <Link xsi:type="PropertyNameLink">
+                        <PropertyName>InstanceFailed</PropertyName>
+                      </Link>
+                    </LinkChain>
+                    <ObjectId>9562507a-5e17-4399-83af-98cfb7f6665d</ObjectId>
+                    <ObjectType>ActivityInstance</ObjectType>
+                  </VariableReference>
+                </ConditionDefinition>
+              </Conditions>
+            </Condition>
+          </ActivityNode>
+        </Children>
+        <Configuration xsi:type="WindowsExecuteActivityConfiguration" xml:space="preserve">
+          <Id>9562507a-5e17-4399-83af-98cfb7f6665d</Id>
+          <DisplayName>Kill a Windows Process</DisplayName>
+          <TargetLoadBalancer xsi:type="ProcessTargetLoadBalancer" />
+          <ContainingProcessId>61c01a32-66e3-4315-91c3-57b433379bac</ContainingProcessId>
+          <WorkingDirectory>
+            <HardcodedValue>C:\</HardcodedValue>
+          </WorkingDirectory>
+          <FailReturnCodeNonZero>true</FailReturnCodeNonZero>
+          <UseTaskScheduler>false</UseTaskScheduler>
+          <TimeWindow>
+            <Milliseconds>300000</Milliseconds>
+            <Units>Minutes</Units>
+          </TimeWindow>
+          <CommandLine>
+            <FormattedCode>taskkill /F /PID {0}</FormattedCode>
+            <References>
+              <VariableReference xsi:type="PropertyReference">
+                <DisplayPath>Process.Variables.Input.PID</DisplayPath>
+                <LinkChain />
+                <ObjectId>626f54e1-b8e1-4cc2-a96d-2aa5415104ba</ObjectId>
+                <ObjectType>GlobalVariable</ObjectType>
+              </VariableReference>
+            </References>
+          </CommandLine>
+        </Configuration>
+      </ActivityNode>
+    </Children>
+  </FirstActivity>
+  <ProcessId>61c01a32-66e3-4315-91c3-57b433379bac</ProcessId>
+</WorkflowConfiguration>

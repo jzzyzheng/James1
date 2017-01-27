@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<ProcessConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:space="preserve">
+  <Id>793c6b5b-17bb-48a0-b6f2-6e88136ec954</Id>
+  <DisplayName>Convert IP Address to Integer</DisplayName>
+  <Description>Converts a provided IP address to an integer by multiplying the octets by the appropriate power of 256.  For example, IP Address 10.20.30.40 would be
+10 * 256 ^ 3 +
+20 * 256 ^ 2 +
+30 * 256 +
+40
+or 169090600</Description>
+  <VersionNumber>-1</VersionNumber>
+  <CreatedTime>2013-05-12T21:32:17.8518122Z</CreatedTime>
+  <ModifiedTime>2013-05-17T20:30:54.9164109Z</ModifiedTime>
+  <Version>3.0.0.903</Version>
+  <TargetLoadBalancer xsi:type="SingleTargetReferenceLoadBalancer">
+    <SingleTargetReference>
+      <FormattedCode />
+      <HardcodedValue>
+        <Id>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</Id>
+        <ObjectType>Target</ObjectType>
+      </HardcodedValue>
+      <KnownValueSerialized>
+        <Id>bd4b3145-4e20-42bb-ba8f-34c013ca86cc</Id>
+        <ObjectType>Target</ObjectType>
+      </KnownValueSerialized>
+    </SingleTargetReference>
+  </TargetLoadBalancer>
+  <AuditStarts>true</AuditStarts>
+  <AuditSuccesses>true</AuditSuccesses>
+  <WorkflowId>8fd4c3ab-8743-4aef-a5f0-977fdd5bb5d2</WorkflowId>
+  <CategoryIds />
+  <TriggerOwner>3735b75d-4080-4632-a3b4-185384d778ce</TriggerOwner>
+  <Triggers>
+    <TriggerDefinition>
+      <Event xsi:type="AdHocEventDefinition">
+        <Id>d3d47c05-cb1e-4838-8a9d-386dbbaf8e1f</Id>
+        <DisplayName>Started by User</DisplayName>
+        <Imported>true</Imported>
+        <Identities />
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>8e764240-ef47-40cd-b7b5-6d7501d6c646</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>247b667c-63ee-4908-9aee-053b79df406e</TriggerId>
+    </TriggerDefinition>
+    <TriggerDefinition>
+      <Event xsi:type="StartProcessEventDefinition">
+        <Id>adae7a32-5421-44f9-8a76-a6c04aeef543</Id>
+        <DisplayName>Started by Parent Process</DisplayName>
+        <Imported>true</Imported>
+        <ProcessIds />
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>723a9bbf-c663-4ff6-b71a-7afc54453c99</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>7c8640b8-5669-43b7-8692-940b881d9074</TriggerId>
+    </TriggerDefinition>
+    <TriggerDefinition>
+      <Event xsi:type="NorthboundEventDefinition">
+        <Id>b03c1bbe-3ddb-43d2-6d08-43f10185aa23</Id>
+        <DisplayName>Started by Web Service</DisplayName>
+        <Imported>true</Imported>
+        <NorthboundName>ConvertIPAddressToInteger</NorthboundName>
+      </Event>
+      <Condition xsi:type="RootConditionDefinition">
+        <Id>a91fdf50-3623-f371-d3f9-18e336f83eaa</Id>
+        <Conditions />
+      </Condition>
+      <TriggerId>021e8932-7001-cbc4-32db-a4339fdcc3e0</TriggerId>
+    </TriggerDefinition>
+  </Triggers>
+  <VariableDefinitions>
+    <VariableConfiguration xsi:type="StringVariableConfiguration" xml:space="preserve">
+      <Id>8be1e28c-bc82-46e7-8f4b-0d28e3cffa8c</Id>
+      <DisplayName>IP Address</DisplayName>
+      <Description>Enter the IP Address like 10.20.30.40.</Description>
+      <string />
+      <Scope>
+        <Family>ProcessInstanceIn</Family>
+        <ControllingItemId>793c6b5b-17bb-48a0-b6f2-6e88136ec954</ControllingItemId>
+      </Scope>
+      <ValueRequired>true</ValueRequired>
+    </VariableConfiguration>
+    <VariableConfiguration xsi:type="NumberVariableConfiguration" xml:space="preserve">
+      <Id>92a3a092-02a0-461d-8668-5ce3e369647f</Id>
+      <DisplayName>Integer Representation</DisplayName>
+      <double>0</double>
+      <Scope>
+        <Family>ProcessInstanceOut</Family>
+        <ControllingItemId>793c6b5b-17bb-48a0-b6f2-6e88136ec954</ControllingItemId>
+      </Scope>
+    </VariableConfiguration>
+  </VariableDefinitions>
+  <Notes />
+  <SmallImageReference xsi:type="ImageReferenceContained">
+    <FriendlyName>ipTOinteger_16.png</FriendlyName>
+    <Bitmap>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAATxJREFUOE9jZICC+iN+UgJM8i3czNyhQv/VGLb+0WK4//ff6o/vs2vOB5x/BlOHlU46oi7Vddzv5q5Lxf+3n2v833Dk8v/Y/ff+O6w+999otf1N9ckuUjgNsDwqIB95XPXyzAsu/8/dTPm/4Mii/3kHb/8P2vvkv17vk/+mfTP+a/b4XlaozpIHGaK4889/FMP+kwBAGm0qt/5HMeTMmTP/LSyt/4NoEMDHh9mMYghIMwgQQ9PGAFK8AHM6Ms1AQhiCQx+kGYbBXpK338+hbL11Iq9l33+GPO3/DHWq/xn61P8zNDr/Z2Ys+y8s3fffI2XPxPj6/RzIYYCRLmx89hWpdGY9Y5jg/Jk7uuqzkNLUzwYuq5/5ZB8pwpsKyZGcOXMmyDv/oTTpRggKCoLDA0aTbMLAGwDyO8gVIBoAwgt2wxChWVYAAAAASUVORK5CYII=</Bitmap>
+  </SmallImageReference>
+  <LargeImageReference xsi:type="ImageReferenceContained">
+    <FriendlyName>ipTOinteger_32.png</FriendlyName>
+    <Bitmap>iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAx9JREFUWEfNlW1IU2EUx+1jH/siQSJZVtSMNMuXNBMt0wK/9CExg8q3IFBB55yumSPCzMzXlBJbStaCTNQSK4RejErN1EaCc03L+bJpm5Cg2f7dc3FjTjS5u1sdOJxnZzzP/3fOPc+9Li7/s7WpbuPdt2cYM3SiVdOD3C41nMLb/IUR/t6Bz1oFXo8qMWTQokmjQqmyH7KPI0h7ke84kLreHLz5WofBiRZMTsnxXtuHx8NG1KunUaY04GK7GqmPKnG2OYZ/iIrONDzoz0P3cAmmf9RAb2hBh1bNABggV02jsEcHUYsGieWfkFwvRkxFsv0QRcXFE0KxGOkiEWen/bkyGTcYYVYW+DA6h9OAUuVkhdeLERAYxEadXo+x8XE2riVP++kcbgBCIQtA4vNz82w0Gmeg0+nZaJvX66eW5VkA5hz7AeZ/sYKzP2dZEYoswF/yvAGYTCZWkGxh4belM2vJ290B62dNyq6uG5fNxmp5zgB0hfgwOofTDEikUhNdIaogg5lkWouYw8RSKRspR/+t5rQnWyLhBmCmjs94iuCoWvikp8DzWhA8C8KwtTAcgtpI7FNEIeR+JPZXnoBP6CXsFmRDsDMFewNlKLrTbZ+wddviLjTB/2gVtp0+CffMAGwSBcEtLxRuZWFwl4fDOyEJXtvT4bUrFb4HLiOvvIs/cTNIpuwV/CILsDnnMNyvhsDtxkF4yo5BkHAOPn4Z8PaVIiz6Foru9rPiweIn/EM0vhxE4j0Z/EvPwC8rB4diSxASXoVT5xtwpaob7X0Gi3i0fAjxDZP8Q1B1I0ZAYwCYLzEGp4ABPSxCVLlH2wKkH+ZYt4Wg3w4DMz8uM0SsYnQJBAnXjMPxAOYZoE4crx6wQFBHnAZgDRFxs4+FkLx1MoA1xJGKXsQpxv5NB3Y0zmBPtRoRlUpbgA0MZBfjNMTktN7C6dVtu4kGcX2ZCh6tc0vcZgZEzL6hRVGCoXU+bwAEsZIvijy0ESRxyjnNqOXUBbOZO+I0AGq5NUDS4mNwGoDTOrBuhZJsZ4C68dwR5a8E4LhbsMYq6M7THCx7D/wBoN/HrUVrs+gAAAAASUVORK5CYII=</Bitmap>
+  </LargeImageReference>
+  <Atomic>true</Atomic>
+  <GeneralHelp xsi:type="CustomHelpAlias">
+    <Alias>IDH_TAP_PROP_ATOMIC_COMMON_CONVIPADDR_GENERAL</Alias>
+  </GeneralHelp>
+  <GeneralInstanceHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </GeneralInstanceHelp>
+  <InputHelp xsi:type="CustomHelpAlias">
+    <Alias>IDH_TAP_PROP_ATOMIC_COMMON_CONVIPADDR_INPUTS</Alias>
+  </InputHelp>
+  <InputInstanceHelp xsi:type="CustomHelpAlias">
+    <Alias />
+  </InputInstanceHelp>
+  <OutputHelp xsi:type="CustomHelpAlias">
+    <Alias>IDH_TAP_PROP_ATOMIC_COMMON_CONVIPADDR_OUTPUTS</Alias>
+  </OutputHelp>
+  <ValidTargetTypeNames>
+    <string>Tidal.Automation.BuiltinAdapter.Common.MasterTargetConfiguration, Tidal.Automation.BuiltinAdapter.Common</string>
+  </ValidTargetTypeNames>
+  <ValidTargetTypeExtensionIds>
+    <guid>af449107-3bd4-c9a3-e2ab-5f4acf12ac03</guid>
+  </ValidTargetTypeExtensionIds>
+  <ValidRuntimeUserTypeNames>
+    <string>Tidal.Automation.Windows.Common.WindowsUserConfiguration, Tidal.Automation.Windows.Common</string>
+  </ValidRuntimeUserTypeNames>
+  <GroupName>Networking</GroupName>
+  <ResumeWhenInterrupted>false</ResumeWhenInterrupted>
+  <StoreWhenCompleted>false</StoreWhenCompleted>
+</ProcessConfiguration>
