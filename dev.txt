@@ -1,0 +1,12 @@
+ Volume in drive D is Storage
+ Volume Serial Number is 7467-C1B9
+
+ Directory of D:\GitHub\autopacks\James1
+
+02/05/2017  04:13 PM    <DIR>          .
+02/05/2017  04:13 PM    <DIR>          ..
+02/01/2017  09:21 AM               402 a.txt
+01/27/2017  02:23 AM    <DIR>          Common Activities
+02/05/2017  04:13 PM                 0 dev.txt
+               2 File(s)            402 bytes
+               3 Dir(s)  142,804,709,376 bytes free
